@@ -1,7 +1,6 @@
 package com.michalchmielewski;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -15,7 +14,7 @@ public class Main {
         }
 
         if (args.length != 5) {
-            System.out.println("Program needs five arguments: strategyName strategyParameter inputFileName solutionFileName informationFileName");
+            System.out.println("Program needs five arguments: strategyName strategyParameter inputFileName solutionFileName statisticFileName");
             return;
         }
 
@@ -23,16 +22,68 @@ public class Main {
         String strategyParameter = args[1];
         String inputFileName = args[2];
         String solutionFileName = args[3];
-        String informationFileName = args[4];
+        String statisticFileName = args[4];
+        String solution;
+        String[] statistic;
 
-        if(!checkArguments(strategyName,strategyParameter,inputFileName,solutionFileName,informationFileName)){
+        if (!checkArguments(strategyName, strategyParameter, inputFileName, solutionFileName, statisticFileName)) {
             return;
+        }
+
+        Frame frame = new Frame(inputFileName);
+
+        switch (strategyName) {
+            case "bfs":
+                BFS bfs = new BFS(frame, strategyParameter);
+                bfs.solve();
+                solution = bfs.getSolution();
+                statistic = bfs.getStatistic();
+                saveSolution(solution, solutionFileName);
+                saveStatistic(solution, statistic, statisticFileName);
+                break;
+            case "dfs":
+
+                break;
+            case "astr":
+
+                break;
         }
     }
 
-    private static boolean checkArguments(String strategyName, String strategyParameter, String inputFileName, String solutionFileName, String informationFileName){
-        String[] strategyValues = {"bfs","dfs","astr"};
-        String[] astrValues = {"hamm","manh"};
+    private static void saveSolution(String solution, String solutionFileName) {
+        File file = new File(solutionFileName);
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(solution.length() != 0 ? Integer.toString(solution.length()) : "-1");
+            writer.write("\n");
+            writer.write(solution);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void saveStatistic(String solution, String[] statistic, String statisticFileName) {
+        File file = new File(statisticFileName);
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(solution.length() != 0 ? Integer.toString(solution.length()) : "-1");
+            writer.write("\n");
+            writer.write(statistic[0] + "\n");
+            writer.write(statistic[1] + "\n");
+            writer.write(statistic[2] + "\n");
+            writer.write(statistic[3] + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean checkArguments(String strategyName, String strategyParameter, String inputFileName, String solutionFileName, String informationFileName) {
+        String[] strategyValues = {"bfs", "dfs", "astr"};
+        String[] astrValues = {"hamm", "manh"};
         if (!Arrays.asList(strategyValues).contains(strategyName)) {
             System.out.println(strategyName + ": strategy not found");
             return false;
