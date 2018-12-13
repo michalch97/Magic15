@@ -42,7 +42,12 @@ public class Main {
                 saveStatistic(solution, statistic, statisticFileName);
                 break;
             case "dfs":
-
+                DFS dfs = new DFS(frame,strategyParameter);
+                dfs.solve();
+                solution = dfs.getSolution();
+                statistic = dfs.getStatistic();
+                saveSolution(solution, solutionFileName);
+                saveStatistic(solution, statistic, statisticFileName);
                 break;
             case "astr":
 
