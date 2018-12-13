@@ -39,6 +39,7 @@ public class AStar {
         AState newState;
         while(statesQueue.size() != 0){
             state = statesQueue.poll();
+            depth = getDepth(state);
             if(state.checkIfIsSolved()){
                 correctState = state;
                 break;
@@ -68,6 +69,16 @@ public class AStar {
                 nodes++;
             }
         }
+    }
+
+    private int getDepth(AState state) {
+        int i=0;
+        AState temp = state;
+        while(temp.getPreviousAState()!=null){
+            temp = temp.getPreviousAState();
+            i++;
+        }
+        return i;
     }
 
     public String getSolution() {

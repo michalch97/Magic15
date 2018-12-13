@@ -79,12 +79,12 @@ public class Main {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(file));
-            writer.write(solution.length() != 0 ? Integer.toString(solution.length()) : "-1");
+            writer.write(solution.length() != 0 ? Integer.toString(solution.length()) : "-1");//dlugosc rozwiazania
             writer.write("\n");
-            writer.write(statistic[0] + "\n");
-            writer.write(statistic[1] + "\n");
-            writer.write(statistic[2] + "\n");
-            writer.write(statistic[3] + "\n");
+            writer.write(statistic[0] + "\n");//stany odwiedzone
+            writer.write(statistic[1] + "\n");//nodes - przetworzone
+            writer.write(statistic[2] + "\n");//depth
+            writer.write(statistic[3] + "\n");//time
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
