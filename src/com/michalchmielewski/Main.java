@@ -50,7 +50,12 @@ public class Main {
                 saveStatistic(solution, statistic, statisticFileName);
                 break;
             case "astr":
-
+                AStar aStar = new AStar(frame,strategyParameter);
+                aStar.solve();
+                solution = aStar.getSolution();
+                statistic = aStar.getStatistic();
+                saveSolution(solution, solutionFileName);
+                saveStatistic(solution, statistic, statisticFileName);
                 break;
         }
     }

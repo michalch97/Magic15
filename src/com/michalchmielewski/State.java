@@ -2,11 +2,11 @@ package com.michalchmielewski;
 
 public class State {
 
-    private State previous;
-    private Frame frame;
-    private char move;
-    private int emptyIndex;
-    private int[] frameValues;
+    protected State previous;
+    protected Frame frame;
+    protected char move;
+    protected int emptyIndex;
+    protected int[] frameValues;
 
     public Frame getFrame() {
         return frame;
