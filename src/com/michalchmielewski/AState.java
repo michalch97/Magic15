@@ -26,6 +26,8 @@ public class AState extends State {
         this.h = h;
     }
 
+    public int getF(){return this.g+this.h;}
+
     public AState(State state, String heuristic){
         if(state.getPrevious() != null) {
             this.previous = state.getPrevious();

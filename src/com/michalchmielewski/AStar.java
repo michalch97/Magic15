@@ -1,13 +1,12 @@
 package com.michalchmielewski;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
+//https://algorithmsinsight.wordpress.com/graph-theory-2/a-star-in-general/implementing-a-star-to-solve-n-puzzle/
 public class AStar {
     private Frame frame;
     private AState correctState;
-    private Queue<AState> statesQueue;
+    private PriorityQueue<AState> statesQueue;
     private HashSet<AState> statesHashes;
     private String heuristic;
     private int nodes;
@@ -16,7 +15,7 @@ public class AStar {
 
     public AStar(Frame frame, String heuristic){
         this.frame = frame;
-        statesQueue = new LinkedList<AState>();
+        statesQueue = new PriorityQueue<AState>(Comparator.comparing(AState::getF));
         statesHashes = new HashSet<AState>();
         this.heuristic = heuristic;
         nodes = 0;

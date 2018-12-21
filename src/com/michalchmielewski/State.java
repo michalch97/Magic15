@@ -76,6 +76,8 @@ public class State {
     public static State left(State previousState) {
         if (previousState.getEmptyIndex() % previousState.getFrame().getW() == 0)//check if free space is in first column
             return null;
+        if(previousState.getMove()=='R')
+            return null;
         State state = new State(previousState);
         state.replace(state.getEmptyIndex(), state.getEmptyIndex() - 1);
         state.setEmptyIndex(state.getEmptyIndex() - 1);
@@ -85,6 +87,8 @@ public class State {
 
     public static State right(State previousState) {
         if (previousState.getEmptyIndex() % previousState.getFrame().getW() == previousState.getFrame().getW() - 1)//check if free space is in last column
+            return null;
+        if(previousState.getMove()=='L')
             return null;
         State state = new State(previousState);
         state.replace(state.getEmptyIndex(), state.getEmptyIndex() + 1);
@@ -96,6 +100,8 @@ public class State {
     public static State up(State previousState) {
         if (previousState.getEmptyIndex() < previousState.getFrame().getW())//check if free space is in first row
             return null;
+        if(previousState.getMove()=='D')
+            return null;
         State state = new State(previousState);
         state.replace(state.getEmptyIndex(), state.getEmptyIndex() - state.getFrame().getW());
         state.setEmptyIndex(state.getEmptyIndex() - previousState.getFrame().getW());
@@ -105,6 +111,8 @@ public class State {
 
     public static State down(State previousState) {
         if (previousState.getEmptyIndex() >= previousState.getFrame().getWK() - previousState.getFrame().getW())//check if free space is in last row
+            return null;
+        if(previousState.getMove()=='U')
             return null;
         State state = new State(previousState);
         state.replace(state.getEmptyIndex(), state.getEmptyIndex() + state.getFrame().getW());

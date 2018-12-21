@@ -14,6 +14,7 @@ public class DFS {
     private int nodes;
     private final int maxDepth = 20;
     private long timeElapsed;
+    private int i = 0;
 
     public DFS(Frame frame, String order) {
         this.frame = frame;
@@ -70,6 +71,7 @@ public class DFS {
     }
 
     public String getSolution() {
+        //System.out.println(depth);
         StringBuilder s = new StringBuilder();
         State currentState = correctState;
         State parent;
