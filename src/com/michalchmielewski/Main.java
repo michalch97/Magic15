@@ -31,7 +31,6 @@ public class Main {
         }
 
         Frame frame = new Frame(inputFileName);
-        System.out.println(inputFileName);
         switch (strategyName) {
             case "bfs":
                 BFS bfs = new BFS(frame, strategyParameter);
